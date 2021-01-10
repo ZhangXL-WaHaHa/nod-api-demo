@@ -1,0 +1,35 @@
+<!--
+ * @Description  : 测试后端接口代码，单独打开这个网页，然后在输入框里面输入如/hello/hello1就可以得到数据库里面的所有数据也可以直接进行拼接
+                    这个主要是可以找到后端的一些bug，在控制台可以得到返回的数据
+ * @Author       : 徫ing
+ * @Date         : 2020-09-26 11:09:18
+ * @LastEditTime : 2020-10-05 11:14:08
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../public/javascripts/jquery-3.3.1.min.js"></script>
+<body>
+    <input type="text" id="in"/>
+    <button class="btn">点击</button>
+</body>
+</html>
+
+<script>
+    $(".btn").on("click",function(){
+        var inputText = $('#in').val();
+        $.post({
+            url: "http://localhost:8000/api"+inputText,
+            success: function(res){
+                console.log(res)
+            },
+            error: function(res){
+                console.error("错误",res)
+            }
+        })
+    })
+</script>
